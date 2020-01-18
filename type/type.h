@@ -6,4 +6,8 @@
 typedef enum _Type
 {
   Object_t,
+  BasePlayer_t,
+  PcPlayer_t,
+  XboxPlayer_t,
+  INetworkable_t
 } Type;

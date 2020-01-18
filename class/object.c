@@ -9,6 +9,8 @@ Object* new_Object()
 {
   Object instance = 
   {
+    __End_of_inheritance__,
+    
     .delete = Object_delete,
     .Equals = Object_Equals,
     .GetType = Object_GetType

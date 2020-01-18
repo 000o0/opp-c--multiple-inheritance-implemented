@@ -2,9 +2,12 @@
 
 #include <stdbool.h>
 #include "../type/type.h"
+#include "../type/typecast.h"
 
 typedef struct _Object
 {
+  End_of_inheritance;
+  
   void (*delete)(void*);
   bool (*Equals)(void*, void*);
   Type (*GetType)(void*);

@@ -21,7 +21,7 @@ void* as(void* Object, Type type)
 void* tcalloc(size_t size, Type type, void* child)
 {
   void* ptr = calloc(1, (CHILD_POINTER_SIZE + TYPE_SIZE + size));
-  *(int*)ptr = (int)child;
+  *(size_t*)ptr = (size_t)child;
   *(Type*)(ptr + CHILD_POINTER_SIZE) = type;
   return (void*)(ptr + (CHILD_POINTER_SIZE + TYPE_SIZE));
 }
