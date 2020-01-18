@@ -1,9 +1,11 @@
+#include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "type.h"
 
-void* GetRealTypeObject(void* Object);
+void* GetRealTypeObject(void* Object)
 {
-  
+  return NULL;
 }
 
 bool is(void* Object, Type type)
@@ -13,5 +15,18 @@ bool is(void* Object, Type type)
 
 void* as(void* Object, Type type)
 {
+  return NULL;
+}
 
+void* tcalloc(size_t size, Type type, void* child)
+{
+  void* ptr = calloc(1, (CHILD_POINTER_SIZE + TYPE_SIZE + size));
+  *(int*)ptr = (int)child;
+  *(Type*)(ptr + CHILD_POINTER_SIZE) = type;
+  return (void*)(ptr + (CHILD_POINTER_SIZE + TYPE_SIZE));
+}
+
+void tfree(void* ptr)
+{
+  free((void*)(ptr - (CHILD_POINTER_SIZE + TYPE_SIZE)));
 }
