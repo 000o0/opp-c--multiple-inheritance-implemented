@@ -1,7 +1,6 @@
 #pragma once
 
-#define TYPE_SIZE sizeof(Type) 
-#define CHILD_POINTER_SIZE sizeof(void*) 
+#define TYPE_SIZE sizeof(Type)
 
 typedef enum _Type
 {

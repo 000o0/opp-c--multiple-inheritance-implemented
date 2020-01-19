@@ -5,6 +5,8 @@
 
 #include "type.h"
 
+#define CHILD_POINTER_SIZE sizeof(void*) 
+
 #define END_OF_INHERITANCE void* end_of_inheritance
 #define __end_of_inheritance__ .end_of_inheritance = NULL
 
