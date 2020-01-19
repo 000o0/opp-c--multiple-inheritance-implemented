@@ -29,7 +29,6 @@ bool is(void* Object, Type type)
 void* as(void* Object, Type type)
 {
   void* realObj = GetRealTypeObject(Object);
-
   return as_recursion(realObj, type);
 }
 
@@ -39,35 +38,42 @@ void* as_recursion(void* RootObject, Type searchtype)
     return RootObject;
 
   int memberindex = 0;
-  while(1)
+  while (1)
   {
-    void* indexobject = (void*)(RootObject + memberindex);
-
-    if(indexobject != NULL)
-      return as_recursion(indexobject, searchtype);
+    void* indexobject = (void*)*(size_t*)(RootObject + memberindex);
+    if (indexobject != NULL)
+    {
+      void* recursionresult = as_recursion(indexobject, searchtype);
+      if (recursionresult == NULL)
+        memberindex += sizeof(void*);
+      else
+        return recursionresult;
+    }
     else
       return NULL;
-    memberindex+=4;
   }
+
+  return NULL;
 }
 
 void* tgetchild(void* Object)
 {
-  size_t* childaddress = ((size_t*)(Object - (CHILD_POINTER_SIZE + TYPE_SIZE)));
-  if (childaddress == NULL)
+  void* ptr = ((char*)Object) - (size_t)(CHILD_POINTER_SIZE + TYPE_SIZE);
+  
+  if (ptr == NULL)
     return NULL;
   else
-    return (void*)(*childaddress);
+    return (void*)(*(size_t*)ptr);
 }
 
 void tsetchild(void* Object, void* child)
 {
-  *((size_t*)(Object - (CHILD_POINTER_SIZE + TYPE_SIZE))) = (size_t)child;
+  *((size_t*)((char*)Object - (CHILD_POINTER_SIZE + TYPE_SIZE))) = (size_t)child;
 }
 
 Type gettype(void* Object)
 {
-  return *(Type*)(Object - TYPE_SIZE);
+  return *(Type*)((char*)Object - TYPE_SIZE);
 }
 
 void* tcalloc(size_t size, Type type)
@@ -89,13 +95,13 @@ void delete(void* Object)
   int memberindex = 0;
   while(1)
   {
-    void* indexobject = (void*)(RealTypeObject + memberindex);
+    void* indexobject = (void*)*(size_t*)(RealTypeObject + memberindex);
 
     if(indexobject == NULL)
     {
-      ((void (*)(void*))(indexobject + 4))(RealTypeObject);
+      ((void (*)(void*))(void*)*(size_t*)(RealTypeObject + memberindex + sizeof(void*)))(RealTypeObject);
       break;
     }
-    memberindex+=4;
+    memberindex+=sizeof(void*);
   }
 }

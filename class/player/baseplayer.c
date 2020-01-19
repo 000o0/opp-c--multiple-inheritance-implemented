@@ -16,7 +16,7 @@ BasePlayer* new_BasePlayer(char* playerName, int playerId, int playerNetworkId)
 
   BasePlayer instance = 
   {
-    __End_of_inheritance__,
+    __end_of_inheritance__,
     .delete = BasePlayer_delete,
     
     .playerName = cloneplayerName,

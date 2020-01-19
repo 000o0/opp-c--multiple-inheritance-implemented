@@ -7,7 +7,7 @@
 
 typedef struct _BasePlayer
 {
-  End_of_inheritance;
+  END_OF_INHERITANCE;
   void (*delete)(struct _BasePlayer*);
 
   char* playerName;

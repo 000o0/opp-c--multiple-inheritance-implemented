@@ -5,12 +5,12 @@
 
 typedef struct _INetworkable
 {
-  End_of_inheritance;
+  END_OF_INHERITANCE;
   void (*delete)(void*);
 
   int* playerNetworkId;
-  void (*Connect)(void*);
-  void (*Disconnect)(void*);
+  void (*Connect)(struct _INetworkable*);
+  void (*Disconnect)(struct _INetworkable*);
 } INetworkable;
 
 INetworkable* new_INetworkable();

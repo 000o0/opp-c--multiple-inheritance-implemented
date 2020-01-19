@@ -18,19 +18,19 @@ typedef struct _PcPlayer
 {
   BasePlayer* parent;
   INetworkable* iNetworkable;
-  End_of_inheritance;
+  END_OF_INHERITANCE;
   void (*delete)(struct _PcPlayer*);
 
   char* PCName;
   OSType osType;
   
-  void (*Connect)(void*);
-  void (*Disconnect)(void*);
+  void (*Connect)(INetworkable*);
+  void (*Disconnect)(INetworkable*);
 } PcPlayer;
 
 PcPlayer* new_PcPlayer(char* playerName, int playerId, int playerNetworkId, char* PCName, OSType osType);
 void PcPlayer_delete(PcPlayer* this);
 
-void PcPlayer_Connect(void* this);
+void PcPlayer_Connect(INetworkable* this);
 
-void PcPlayer_Disconnect(void* this);
+void PcPlayer_Disconnect(INetworkable* this);

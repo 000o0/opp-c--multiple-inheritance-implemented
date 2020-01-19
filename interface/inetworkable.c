@@ -8,7 +8,7 @@ INetworkable* new_INetworkable()
 {
   INetworkable instance = 
   {
-    __End_of_inheritance__,
+    __end_of_inheritance__,
     .delete = INetworkable_delete
   };
   

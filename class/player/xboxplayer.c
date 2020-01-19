@@ -18,7 +18,7 @@ XBoxPlayer* new_XBoxPlayer(char* playerName, int playerId, int playerNetworkId, 
   {
     .parent = basePlayer,
     .iNetworkable = networkable,
-    __End_of_inheritance__,
+    __end_of_inheritance__,
     .delete = XBoxPlayer_delete,
     
     .ControllerCount = controllerCount,
@@ -49,16 +49,16 @@ void XBoxPlayer_delete(XBoxPlayer* this)
   tfree(this);
 }
 
-void XBoxPlayer_Connect(void* this)
+void XBoxPlayer_Connect(INetworkable* this)
 {
-  XBoxPlayer* _this = this;
+  XBoxPlayer* _this = as(this, XboxPlayer_t);
 
-  printf("%s 님이 접속하셨습니다. 컨트롤러 개수: %d", _this->parent->playerName, _this->ControllerCount);
+  printf("%s 님이 접속하셨습니다. 컨트롤러 개수: %d\n", _this->parent->playerName, _this->ControllerCount);
 }
 
-void XBoxPlayer_Disconnect(void* this)
+void XBoxPlayer_Disconnect(INetworkable* this)
 {
-  XBoxPlayer* _this = this;
+  XBoxPlayer* _this = as(this, XboxPlayer_t);
 
-  printf("%s 님이 서버에서 나가셨습니다. 컨트롤러 개수: %d", _this->parent->playerName, _this->ControllerCount);
+  printf("%s 님이 서버에서 나가셨습니다. 컨트롤러 개수: %d\n", _this->parent->playerName, _this->ControllerCount);
 }

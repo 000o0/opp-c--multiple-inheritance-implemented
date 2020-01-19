@@ -10,12 +10,13 @@
 int main() 
 {
   PcPlayer* player = new_PcPlayer("김수한무", 723455332, 23443234, "김수한무의 PC", windows_10);
-  
-  //BasePlayer* baseplayer = as(player, BasePlayer_t);
-  //INetworkable* networkable = as(player, INetworkable_t);
+  BasePlayer* baseplayer = as(player, BasePlayer_t);
+  INetworkable* networkable = as(player, INetworkable_t);
 
-  printf("%s", player->PCName);
+  printf("%s\n", baseplayer->playerName);
+  printf("%s\n", player->PCName);
+  networkable->Connect(networkable);
 
-  //delete(player);
+  delete(player);
   return 0;
 }

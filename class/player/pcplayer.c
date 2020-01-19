@@ -22,7 +22,7 @@ PcPlayer* new_PcPlayer(char* playerName, int playerId, int playerNetworkId, char
   {
     .parent = basePlayer,
     .iNetworkable = networkable,
-    __End_of_inheritance__,
+    __end_of_inheritance__,
     .delete = PcPlayer_delete,
     
     .PCName = clonePCName,
@@ -54,16 +54,14 @@ void PcPlayer_delete(PcPlayer* this)
   tfree(this);
 }
 
-void PcPlayer_Connect(void* this)
+void PcPlayer_Connect(INetworkable* this)
 {
-  PcPlayer* _this = this;
-
-  printf("%s 님이 접속하셨습니다. PC이름: %s OS: %d", _this->parent->playerName, _this->PCName, _this->osType);
+  PcPlayer* _this = as(this, PcPlayer_t);
+  printf("%s 님이 접속하셨습니다. PC이름: %s OS: %d\n", _this->parent->playerName, _this->PCName, _this->osType);
 }
 
-void PcPlayer_Disconnect(void* this)
+void PcPlayer_Disconnect(INetworkable* this)
 {
-  PcPlayer* _this = this;
-
-  printf("%s 님이 서버에서 나가셨습니다. PC이름: %s OS: %d", _this->parent->playerName, _this->PCName, _this->osType);
+  PcPlayer* _this = as(this, PcPlayer_t);
+  printf("%s 님이 서버에서 나가셨습니다. PC이름: %s OS: %d\n", _this->parent->playerName, _this->PCName, _this->osType);
 }

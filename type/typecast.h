@@ -5,8 +5,8 @@
 
 #include "type.h"
 
-#define End_of_inheritance void* End_of_inheritance
-#define __End_of_inheritance__ NULL
+#define END_OF_INHERITANCE void* end_of_inheritance
+#define __end_of_inheritance__ .end_of_inheritance = NULL
 
 void* GetRealTypeObject(void* Object);
 
