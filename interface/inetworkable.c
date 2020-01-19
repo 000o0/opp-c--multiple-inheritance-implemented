@@ -9,11 +9,10 @@ INetworkable* new_INetworkable()
   INetworkable instance = 
   {
     __End_of_inheritance__,
-
     .delete = INetworkable_delete
   };
   
-  INetworkable* pinstance = (INetworkable*)tcalloc(sizeof(INetworkable), INetworkable_t, NULL);
+  INetworkable* pinstance = (INetworkable*)tcalloc(sizeof(INetworkable), INetworkable_t);
   if (pinstance != NULL)
 		*pinstance = instance;
 
