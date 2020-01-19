@@ -4,9 +4,10 @@
 #include <stdlib.h>
 
 #include "pcplayer.h"
-#include "baseplayer.h"
 #include "../../type/type.h"
 #include "../../type/typecast.h"
+#include "baseplayer.h"
+#include "../../interface/inetworkable.h"
 
 PcPlayer* new_PcPlayer(char* playerName, int playerId, int playerNetworkId, char* PCName, OSType osType)
 {

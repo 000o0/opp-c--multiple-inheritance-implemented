@@ -4,9 +4,10 @@
 #include <stdlib.h>
 
 #include "xboxplayer.h"
-#include "baseplayer.h"
 #include "../../type/type.h"
 #include "../../type/typecast.h"
+#include "baseplayer.h"
+#include "../../interface/inetworkable.h"
 
 XBoxPlayer* new_XBoxPlayer(char* playerName, int playerId, int playerNetworkId, int controllerCount)
 {
